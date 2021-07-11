@@ -14,7 +14,7 @@
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }],
-        "linebreak-style": ["error","unix"],
+        "linebreak-style": "off",
         "quotes": ["error","double"],
         "semi": ["error","always"]
     },

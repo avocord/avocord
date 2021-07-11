@@ -35,6 +35,8 @@
     "eslint-plugin-promise": "^5.1.0"
   },
   "dependencies": {
-    "prettier": "^2.3.2"
+    "axios": "^0.21.1",
+    "prettier": "^2.3.2",
+    "ws": "^7.5.3"
   }
 }
