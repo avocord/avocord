@@ -1,0 +1,21 @@
+{
+	"name": "avocord",
+	"version": "0.0.1",
+	"main": "index.js",
+	"scripts": {
+		"test": "ts-node-dev ./src/tests/test.ts"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@discordoo/collection": "^1.0.15",
+		"cloudstorm": "^0.5.1",
+		"discord-api-types": "^0.31.0",
+		"discord-typings": "^10.0.3",
+		"snowtransfer": "^0.4.3"
+	},
+	"devDependencies": {
+		"ts-node-dev": "^1.1.8"
+	}
+}
