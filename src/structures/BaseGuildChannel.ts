@@ -1,5 +1,6 @@
-import { APIChannel } from 'discord-api-types';
+import type { APINewsChannel, APITextChannel, APIVoiceChannel, APIThreadChannel, APIGuildCategoryChannel } from 'discord-api-types/v10';
 import type Client from '../index';
+import type Guild from './Guild';
 
 // const ChannelTypes = {
 //     GUILD_TEXT: 0,
@@ -17,13 +18,15 @@ import type Client from '../index';
 //     GUILD_CATEGORY: 4,
 // };
 
-class BaseGuildChannel {
-	data: APIChannel;
+class BaseGuildChannel<poto extends (APINewsChannel | APITextChannel | APIVoiceChannel | APIThreadChannel | APIGuildCategoryChannel)> {
+	data: poto;
 	client: Client;
+	guild: Guild;
 
-	constructor(client: Client, data: APIChannel) {
+	constructor(client: Client, data: poto, guild: Guild) {
 		this.data = data;
 		this.client = client;
+		this.guild = guild;
 	}
 
 	get name() {
@@ -39,7 +42,7 @@ class BaseGuildChannel {
 	}
 
 	get guildID() {
-		return this.data.guild_id;
+		return this.guild.id;
 	}
 
 	delete(reason?: string) {

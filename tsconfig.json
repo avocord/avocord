@@ -14,7 +14,8 @@
 		"moduleResolution": "Node",
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": false,
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"declaration": true
 	},
 	"include": [
 		"src"

@@ -1,7 +1,8 @@
-import BaseChannel from '../BaseChannel';
+import BaseGuildChannel from '../BaseGuildChannel';
 import { Collection } from '@discordoo/collection';
+import type { APIVoiceChannel } from 'discord-api-types/v10'
 
-class VoiceChannel extends BaseChannel {
+class VoiceChannel extends BaseGuildChannel<APIVoiceChannel> {
 	voiceStates = new Collection<string, unknown>()
 
 	get bitrate() {

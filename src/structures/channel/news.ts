@@ -1,18 +1,14 @@
 import BaseGuildChannel from '../BaseGuildChannel';
-import type { APITextChannel } from 'discord-api-types/v10'
+import type { APINewsChannel } from 'discord-api-types/v10'
 
-class TextableChannel extends BaseGuildChannel<APITextChannel> {
+class NewsChannel extends BaseGuildChannel<APINewsChannel> {
 
 	get topic() {
-		return this.data.topic;
+    	return this.data.topic;
 	}
 
 	get lastMessageID() {
 		return this.data.last_message_id;
-	}
-
-	get rateLimitPerUser() {
-		return this.data.rate_limit_per_user;
 	}
 
 	get parentID() {
@@ -33,10 +29,6 @@ class TextableChannel extends BaseGuildChannel<APITextChannel> {
 
 	get defaultAutoArchiveDuration() {
 		return this.data.default_auto_archive_duration;
-	}
-
-	setRateLimitPerUser(rate_limit_per_user: number) {
-		return this.edit({ rate_limit_per_user })
 	}
 
 	fetchPins() {
@@ -108,7 +100,7 @@ class TextableChannel extends BaseGuildChannel<APITextChannel> {
 
 }
 
-export default TextableChannel;
+export default NewsChannel;
 
 export interface GetMessageOptions {
 	/**

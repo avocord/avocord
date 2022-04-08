@@ -1,6 +1,7 @@
 import BaseChannel from '../BaseChannel';
+import { APIDMChannel } from 'discord-api-types/v10';
 
-class DMChannel extends BaseChannel {
+class DMChannel extends BaseChannel<APIDMChannel> {
 
 	get lastMessageID() {
 		return this.data.last_message_id;
@@ -10,24 +11,8 @@ class DMChannel extends BaseChannel {
 		return this.data.recipients;
 	}
 
-	get icon() {
-		return this.data.icon;
-	}
-
-	get ownerID() {
-		return this.data.owner_id;
-	}
-
-	get lastPinTimestamp() {
-		return this.data.last_pin_timestamp;
-	}
-
-	get messageCount() {
-		return this.data.message_count;
-	}
-
 	get user() {
-		return this.data.recipients!.find(r => r.id !== this.client.user!.id);
+		return this.data.recipients!.find((r: any) => r.id !== this.client.user!.id); 
 	}
 
 	close() {

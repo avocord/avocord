@@ -1,4 +1,4 @@
-import { APIRole } from "discord-api-types";
+import { APIRole } from "discord-api-types/v10";
 import type Client from '../index';
 import Guild from "./Guild";
 

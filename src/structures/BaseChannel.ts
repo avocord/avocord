@@ -1,4 +1,4 @@
-import { APIChannel } from 'discord-api-types';
+import type { APIChannel } from 'discord-api-types/v10';
 import type Client from '../index';
 
 // const ChannelTypes = {
@@ -17,11 +17,12 @@ import type Client from '../index';
 //     GUILD_CATEGORY: 4,
 // };
 
-class BaseChannel {
-	data: APIChannel;
+class BaseChannel <poto extends APIChannel>{
+	data: poto;
 	client: Client;
+	//type APIChannel = APIGroupDMChannel | APIDMChannel | APITextChannel | APINewsChannel | APIVoiceChannel | APIGuildCategoryChannel | APIThreadChannel
 
-	constructor(client: Client, data: APIChannel) {
+	constructor(client: Client, data: poto) {
 		this.data = data;
 		this.client = client;
 	}

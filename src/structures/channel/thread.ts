@@ -1,7 +1,21 @@
 import BaseGuildChannel from "../BaseGuildChannel";
+import Guild from "../Guild";
 import { CreateMessageData, GetMessageOptions } from "./textable";
+import type { APIThreadChannel } from "discord-api-types/v10";
+import { Collection } from "@discordoo/collection";
+import GuildMember from "../GuildMember";
+import Client from "../..";
 
-class ThreadChannel extends BaseGuildChannel {
+class ThreadChannel extends BaseGuildChannel<APIThreadChannel> {
+	
+	members = new Collection<string, GuildMember>();
+
+	constructor(client: Client, data: APIThreadChannel, guild: Guild) {
+		super(client, data, guild);
+	
+		// for (let i of data.members) {}
+
+	}
 
 	get threadMetadata() {
 		return this.data.thread_metadata!;
@@ -37,10 +51,6 @@ class ThreadChannel extends BaseGuildChannel {
 
 	get member() {
 		return this.data.member;
-	}
-
-	get defaultAutoArchiveDuration() {
-		return this.data.default_auto_archive_duration;
 	}
 
 	get ownerID() {

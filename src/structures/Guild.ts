@@ -1,22 +1,24 @@
 import { Collection } from '@discordoo/collection';
-import { APIGuild } from 'discord-api-types';
+import { APIGuild, APIThreadChannel, ChannelType } from 'discord-api-types/v10';
 import type Client from '../index';
 import CategoryChannel from './channel/category';
 import TextableChannel from './channel/textable';
 import Thread from './channel/thread';
 import VoiceChannel from './channel/voice';
 import Emoji from './Emoji';
+import Sticker from './Sticker';
 import GuildMember from './GuildMember';
 import Role from './Role';
-
+import NewsChannel from './channel/news';
 class Guild {
 	data: APIGuild;
-	channels: Collection<string, TextableChannel | VoiceChannel | CategoryChannel | Thread>;
+	channels: Collection<string, TextableChannel | VoiceChannel | CategoryChannel | Thread | NewsChannel>;
 	roles: Collection<string, Role>;
 	members: Collection<string, GuildMember>;
 	emojis: Collection<string, Emoji>;
 	presences: Collection<string, unknown>;
 	client: Client;
+	stickers : Collection<string, Sticker>;
 
 	constructor(client: Client, data: APIGuild) {
 		this.data = data;
@@ -26,6 +28,59 @@ class Guild {
 		this.emojis = new Collection();
 		this.presences = new Collection();
 		this.client = client;
+
+		for (let i of data.channels || []) {
+			switch (i.type) {
+				case ChannelType.GuildCategory:
+					this.channels.set(i.id, new CategoryChannel(this.client, i, this));
+					break;
+				case ChannelType.GuildText:
+					this.channels.set(i.id, new TextableChannel(this.client, i, this));
+					break;
+				case ChannelType.GuildVoice:
+				case ChannelType.GuildStageVoice:
+					this.channels.set(i.id, new VoiceChannel(this.client, i, this));
+					break;
+				case ChannelType.GuildCategory:
+					this.channels.set(i.id, new CategoryChannel(this.client, i, this));
+					break;
+				case ChannelType.GuildPublicThread:
+				case ChannelType.GuildPrivateThread:
+				case ChannelType.GuildNewsThread:
+					console.log(i.type);
+					this.channels.set(i.id, new Thread(this.client, i, this));
+					break;
+				case ChannelType.GuildNews:
+					this.channels.set(i.id, new NewsChannel(this.client, i, this));
+					break;
+			}
+
+		}
+
+		for (let i of data.threads || []) {
+			this.channels.set(i.id, new Thread(this.client, i as APIThreadChannel, this));
+		}
+
+		for (let i of data.roles) {
+			this.roles.set(i.id, new Role(this.client, i, this));
+		}
+
+		for (let i of data.members || []) {
+			this.members.set(i.user!.id, new GuildMember(this.client, i, this));
+		}
+
+		for (let i of data.emojis || []) {
+			this.emojis.set(i.id!, new Emoji(this.client, i, this));
+		}
+
+		for (let i of data.stickers || []) {
+			this.stickers.set(i.id, new Sticker(this.client, i, this));
+		}
+
+		// for (let i of data.presences || []) {
+		// 	this.presences.set(i.user!.id, i);
+		// }
+
 	}
 
 	get id() {

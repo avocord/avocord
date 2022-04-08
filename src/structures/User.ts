@@ -1,4 +1,4 @@
-import { APIUser } from "discord-api-types";
+import { APIUser } from "discord-api-types/v10";
 import type Client from '../index';
 import DMChannel from "./channel/dm";
 

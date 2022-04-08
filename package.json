@@ -1,9 +1,10 @@
 {
-	"name": "avocord",
+	"name": "disonejs",
 	"version": "0.0.1",
-	"main": "index.js",
+	"main": "./dist/index.js",
 	"scripts": {
-		"test": "ts-node-dev ./src/tests/test.ts"
+		"test": "ts-node-dev ./src/tests/test.ts",
+		"postinstall": "npx tsc"
 	},
 	"author": "",
 	"license": "ISC",
@@ -16,6 +17,8 @@
 		"snowtransfer": "^0.4.3"
 	},
 	"devDependencies": {
-		"ts-node-dev": "^1.1.8"
+		"ts-node-dev": "^1.1.8",
+		"typedoc": "^0.22.14",
+		"typescript": "^4.6.3"
 	}
 }

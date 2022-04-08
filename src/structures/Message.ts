@@ -1,17 +1,18 @@
 import type Client from '../index'
-import { APIMessage } from "discord-api-types";
+import { APIMessage } from "discord-api-types/v10";
 import TextableChannel, { CreateMessageData } from './channel/textable';
 import Thread from './channel/thread';
 import DMChannel from './channel/dm';
+import NewsChannel from './channel/news';
 import VoiceChannel from './channel/voice';
 import Sticker from './Sticker';
 
 class Message {
 	client: Client;
 	data: APIMessage;
-	channel: TextableChannel | Thread | DMChannel | VoiceChannel;
+	channel: TextableChannel | Thread | DMChannel | VoiceChannel | NewsChannel;
 
-	constructor(client: Client, data: APIMessage, channel: TextableChannel | Thread | DMChannel | VoiceChannel) {
+	constructor(client: Client, data: APIMessage, channel: TextableChannel | Thread | DMChannel | VoiceChannel | NewsChannel) {
 		this.client = client;
 		this.data = data;
 		this.channel = channel;
