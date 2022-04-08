@@ -2,7 +2,7 @@ name: Deploy docs to Github Pages
 on:
   push:
     branches:
-      - master
+      - dev
 jobs:
   publish-docs:
     runs-on: ubuntu-latest
