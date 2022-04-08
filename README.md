@@ -5,4 +5,4 @@ This is just a wrapper that uses Snowtransfer and Cloudstorm as rest api and gat
 
 
 ## Documentation
-Soon tm
+[TypeDoc Documentation](https://disonejs.github.io/disonejs/)
