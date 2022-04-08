@@ -22,5 +22,12 @@
 	],
 	"exclude": [
 		"node_modules"
-	]
+	],
+	"typedocOptions": {
+		"name": "Disonejs Client",
+		"out": "./docs",
+		"entryPoints": [
+			"./src"
+		]
+	}
 }
