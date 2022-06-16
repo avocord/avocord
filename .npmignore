@@ -3,4 +3,3 @@ env.json
 .editorconfig
 dist/
 docs/
-package-lock.json

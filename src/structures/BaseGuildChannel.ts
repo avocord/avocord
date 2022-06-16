@@ -1,119 +1,43 @@
 import type { APINewsChannel, APITextChannel, APIVoiceChannel, APIThreadChannel, APIGuildCategoryChannel } from 'discord-api-types/v10';
-import type Client from '../index';
+import type  { EditChannelData } from './Constants';
+import type Client from '../gateway/Client';
 import type Guild from './Guild';
 
-// const ChannelTypes = {
-//     GUILD_TEXT: 0,
-//     DM: 1,
-//     GROUP_DM: 3,
-//     GUILD_NEWS: 5,
+class BaseGuildChannel<T extends (APINewsChannel | APITextChannel | APIVoiceChannel | APIThreadChannel | APIGuildCategoryChannel)> {
+  data: T;
+  client: Client;
+  guild: Guild;
 
-//     GUILD_NEWS_THREAD: 10,
-//     GUILD_PUBLIC_THREAD: 11,
-//     GUILD_PRIVATE_THREAD: 12,
+  constructor(client: Client, data: T, guild: Guild) {
+    this.data = data;
+    this.client = client;
+    this.guild = guild;
+  }
 
-//     GUILD_VOICE: 2,
-//     GUILD_STAGE_VOICE: 13, //GUILD_STAGE: 13
+  get name() {
+    return this.data.name!;
+  }
 
-//     GUILD_CATEGORY: 4,
-// };
+  get id() {
+    return this.data.id;
+  }
 
-class BaseGuildChannel<poto extends (APINewsChannel | APITextChannel | APIVoiceChannel | APIThreadChannel | APIGuildCategoryChannel)> {
-	data: poto;
-	client: Client;
-	guild: Guild;
+  get type() {
+    return this.data.type;
+  }
 
-	constructor(client: Client, data: poto, guild: Guild) {
-		this.data = data;
-		this.client = client;
-		this.guild = guild;
-	}
+  get guildId() {
+    return this.guild.id;
+  }
 
-	get name() {
-		return this.data.name!;
-	}
+  delete(reason?: string) {
+    return this.client.rest.channel.deleteChannel(this.id, reason);
+  }
 
-	get id() {
-		return this.data.id;
-	}
-
-	get type() {
-		return this.data.type;
-	}
-
-	get guildID() {
-		return this.guild.id;
-	}
-
-	delete(reason?: string) {
-		return this.client.rest.channel.deleteChannel(this.id, reason)
-	}
-
-	edit(data: EditChannelData) {
-		return this.client.rest.channel.updateChannel(this.id, data);
-	}
+  edit(data: EditChannelData) {
+    return this.client.rest.channel.updateChannel(this.id, data);
+  }
 
 }
-
 
 export default BaseGuildChannel;
-
-export interface EditChannelData {
-	/**
-	 * New name of the channel
-	 */
-	name?: string;
-	/**
-	 * New position of the channel
-	 */
-	position?: number;
-	/**
-	 * New topic of the channel
-	 */
-	topic?: string;
-	/**
-	 * Update nsfw type of the channel
-	 */
-	nsfw?: boolean;
-	/**
-	 * Update bitrate of the channel
-	 */
-	bitrate?: number;
-	/**
-	 * Update the limit of users that are allowed to be in a channel
-	 */
-	user_limit?: number;
-	/**
-	 * Update the permission overwrites
-	 */
-	permission_overwrites?: {
-		id: string;
-		type: number;
-		allow: string;
-		deny: string;
-	}[];
-	/**
-	 * Id of the parent category of the channel
-	 */
-	parent_id?: string;
-	/**
-	 * Update whether or not a thread is archived
-	 */
-	archived?: boolean;
-	/**
-	 * Update how long it takes for a thread to become stale and archived automatically
-	 */
-	auto_archive_duration?: number;
-	/**
-	 * Update whether or not a thread is locked
-	 */
-	locked?: boolean;
-	/**
-	 * Update if slowmode is enabled and how long slow mode should last
-	 */
-	rate_limit_per_user?: number;
-	/**
-	 * Reason for updating the channel
-	 */
-	reason?: string;
-}

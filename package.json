@@ -1,14 +1,20 @@
 {
 	"name": "disonejs",
-	"version": "0.0.1",
+	"version": "0.1.1",
 	"main": "./dist/index.js",
 	"scripts": {
 		"test": "ts-node-dev ./src/tests/test.ts",
+		"gendocs": "typedoc --tsconfig ./tsconfig.json --excludeExternals --sort static-first --sort alphabetical",
 		"postinstall": "npx tsc"
 	},
-	"author": "",
-	"license": "ISC",
-	"description": "",
+	"types": "./index.d.ts",
+	"contributors": [
+		"Awoocado",
+		"MARCROCK22",
+		"NotKirzu"
+	],
+	"license": "MIT",
+	"description": "This is just a wrapper that uses Snowtransfer and Cloudstorm as rest api and gateway respectively.",
 	"dependencies": {
 		"@discordoo/collection": "^1.0.15",
 		"cloudstorm": "^0.5.1",
@@ -17,7 +23,15 @@
 		"snowtransfer": "^0.4.3"
 	},
 	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.28.0",
+		"@typescript-eslint/parser": "^5.28.0",
+		"eslint": "^8.17.0",
 		"ts-node-dev": "^1.1.8",
+		"typedoc": "^0.22.17",
+		"typedoc-plugin-discord-types": "^1.0.2",
+		"typedoc-plugin-markdown": "^3.12.1",
+		"typedoc-plugin-mdn-links": "^1.0.6",
+		"typedoc-plugin-missing-exports": "^0.22.6",
 		"typescript": "^4.6.3"
 	}
 }

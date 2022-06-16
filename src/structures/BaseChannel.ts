@@ -1,49 +1,26 @@
 import type { APIChannel } from 'discord-api-types/v10';
-import type Client from '../index';
+import type Client from '../gateway/Client';
 
-// const ChannelTypes = {
-//     GUILD_TEXT: 0,
-//     DM: 1,
-//     GROUP_DM: 3,
-//     GUILD_NEWS: 5,
+class BaseChannel <T extends APIChannel>{
+  data: T;
+  client: Client;
 
-//     GUILD_NEWS_THREAD: 10,
-//     GUILD_PUBLIC_THREAD: 11,
-//     GUILD_PRIVATE_THREAD: 12,
+  constructor(client: Client, data: T) {
+    this.data = data;
+    this.client = client;
+  }
 
-//     GUILD_VOICE: 2,
-//     GUILD_STAGE_VOICE: 13, //GUILD_STAGE: 13
+  get name() {
+    return this.data.name!;
+  }
 
-//     GUILD_CATEGORY: 4,
-// };
+  get id() {
+    return this.data.id;
+  }
 
-class BaseChannel <poto extends APIChannel>{
-	data: poto;
-	client: Client;
-	//type APIChannel = APIGroupDMChannel | APIDMChannel | APITextChannel | APINewsChannel | APIVoiceChannel | APIGuildCategoryChannel | APIThreadChannel
-
-	constructor(client: Client, data: poto) {
-		this.data = data;
-		this.client = client;
-	}
-
-	get name() {
-		return this.data.name!;
-	}
-
-	get id() {
-		return this.data.id;
-	}
-
-	get type() {
-		return this.data.type;
-	}
-
-	// get guildID() {
-	// 	return this.data.guild_id;
-	// }
-
+  get type() {
+    return this.data.type;
+  }
 }
-
 
 export default BaseChannel;

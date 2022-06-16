@@ -18,13 +18,14 @@
 		"declaration": true
 	},
 	"include": [
-		"src"
+		"src",
+		"index.d.ts"
 	],
 	"exclude": [
 		"node_modules"
 	],
 	"typedocOptions": {
-		"name": "Disonejs Client",
+		"name": "DisoneJS",
 		"out": "./docs",
 		"entryPoints": [
 			"./src"
