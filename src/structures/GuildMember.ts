@@ -1,7 +1,6 @@
-import Guild from './Guild';
-
 import type { APIGuildMember } from 'discord-api-types/v10';
 import type Client from '../gateway/Client';
+import type Guild from './Guild';
 
 class GuildMember {
   data: APIGuildMember;

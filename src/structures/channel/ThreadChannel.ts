@@ -1,11 +1,11 @@
 import { Collection } from '@discordoo/collection';
 import BaseGuildChannel from '../BaseGuildChannel';
-import Client from '../../gateway/Client';
-import GuildMember from '../GuildMember';
-import Guild from '../Guild';
 
 import type { CreateMessageData, GetMessageOptions } from './Constants';
 import type { APIThreadChannel } from 'discord-api-types/v10';
+import type Client from '../../gateway/Client';
+import type GuildMember from '../GuildMember';
+import type Guild from '../Guild';
  
 class ThreadChannel extends BaseGuildChannel<APIThreadChannel> {
 
@@ -54,7 +54,7 @@ class ThreadChannel extends BaseGuildChannel<APIThreadChannel> {
     return this.data.member;
   }
 
-  get ownerID() {
+  get ownerId() {
     return this.data.owner_id!;
   }
 

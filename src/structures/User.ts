@@ -46,7 +46,7 @@ class User {
   }
 
   get avatarURL() {
-    return `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png`;
+    return this.avatar ? `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png` : null;
   }
 
   get defaultAvatarURL() {
@@ -63,10 +63,6 @@ class User {
 
   get url() {
     return `https://discordapp.com/users/${this.id}/${this.username}`;
-  }
-
-  get createdTimestamp() {
-    return this.createdAt.getTime();
   }
 
   async fetch() {

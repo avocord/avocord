@@ -9,11 +9,11 @@ class NewsChannel extends BaseGuildChannel<APINewsChannel> {
     return this.data.topic;
   }
 
-  get lastMessageID() {
+  get lastMessageId() {
     return this.data.last_message_id;
   }
 
-  get parentID() {
+  get parentId() {
     return this.data.parent_id;
   }
 
@@ -37,8 +37,9 @@ class NewsChannel extends BaseGuildChannel<APINewsChannel> {
     return this.client.rest.channel.getChannelPinnedMessages(this.id);
   }
 
+  // TODO
   syncPermissions() {
-    return this.client.rest.channel;
+    throw new Error('Not implemented yet.');
   }
 
   createInvite(data: {

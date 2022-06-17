@@ -1,6 +1,7 @@
-import BaseInteraction from '../BaseInteraction';
 import { APIModalSubmitInteraction, APIModalSubmitDMInteraction, InteractionResponseType } from 'discord-api-types/v10';
-import { InteractionResponse } from 'discord-typings';
+import BaseInteraction from '../BaseInteraction';
+
+import type { InteractionResponse } from 'discord-typings';
 
 class ModalInteraction extends BaseInteraction {
   data: APIModalSubmitInteraction | APIModalSubmitDMInteraction;

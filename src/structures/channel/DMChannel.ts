@@ -1,9 +1,10 @@
 import BaseChannel from '../BaseChannel';
-import { APIDMChannel, APIUser } from 'discord-api-types/v10';
+
+import type { APIDMChannel, APIUser } from 'discord-api-types/v10';
 
 class DMChannel extends BaseChannel<APIDMChannel> {
  
-  get lastMessageID() {
+  get lastMessageId() {
     return this.data.last_message_id;
   }
 

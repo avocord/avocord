@@ -9,7 +9,7 @@ class TextableChannel extends BaseGuildChannel<APITextChannel> {
     return this.data.topic;
   }
 
-  get lastMessageID() {
+  get lastMessageId() {
     return this.data.last_message_id;
   }
 
@@ -17,7 +17,7 @@ class TextableChannel extends BaseGuildChannel<APITextChannel> {
     return this.data.rate_limit_per_user;
   }
 
-  get parentID() {
+  get parentId() {
     return this.data.parent_id;
   }
 
@@ -45,8 +45,9 @@ class TextableChannel extends BaseGuildChannel<APITextChannel> {
     return this.client.rest.channel.getChannelPinnedMessages(this.id);
   }
 
+  // TODO
   syncPermissions() {
-    return this.client.rest.channel;
+    throw new Error('Not implemented yet.');
   }
 
   createInvite(data: {

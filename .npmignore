@@ -1,5 +1,6 @@
 node_modules
 env.json
 .editorconfig
-dist/
 docs/
+.github
+src/

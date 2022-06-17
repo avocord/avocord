@@ -68,4 +68,4 @@ export interface RoleOptions {
 	mentionable?: boolean;
 }
 
-export type editRolePosition = { id: string; position?: number | null; reason?: string; } | Array<{ id: string; position?: number | null; reason?: string; }>;
+export type EditRolePosition = { id: string; position?: number | null; reason?: string; } | Array<{ id: string; position?: number | null; reason?: string; }>;

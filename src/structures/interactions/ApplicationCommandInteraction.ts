@@ -1,8 +1,8 @@
 import { APIApplicationCommandInteraction, InteractionResponseType } from 'discord-api-types/v10';
 import BaseInteraction from '../BaseInteraction';
 
-import type { InteractionResponse } from 'discord-typings';
 import type { WebhookCreateMessageData, WebhookEditMessageData } from './Constants';
+import type { InteractionResponse } from 'discord-typings';
 
 class ApplicationCommandInteraction extends BaseInteraction {
   data: APIApplicationCommandInteraction;
@@ -18,7 +18,7 @@ class ApplicationCommandInteraction extends BaseInteraction {
     });
   }
 
-  replywithmodal(data: InteractionResponse['data']) {
+  replyWithModal(data: InteractionResponse['data']) {
     return this.client.rest.interaction.createInteractionResponse(this.id, this.token, {
       type: InteractionResponseType.Modal,
       data

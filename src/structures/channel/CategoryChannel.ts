@@ -1,15 +1,15 @@
 import BaseGuildChannel from '../BaseGuildChannel';
-import TextableChannel from './TextableChannel';
-import ThreadChannel from './ThreadChannel';
-import VoiceChannel from './VoiceChannel';
-import NewsChannel from './NewsChannel';
 
 import type { APIGuildCategoryChannel } from 'discord-api-types/v10';
+import type TextableChannel from './TextableChannel';
+import type ThreadChannel from './ThreadChannel';
+import type VoiceChannel from './VoiceChannel';
+import type NewsChannel from './NewsChannel';
 
 class CategoryChannel extends BaseGuildChannel<APIGuildCategoryChannel> {
  
   get children() {
-    return this.client.guilds.get(this.data.guild_id!)!.channels.filter((c: TextableChannel | VoiceChannel | ThreadChannel | NewsChannel) => 'parentID' in c && c.parentID === this.id);
+    return this.client.guilds.get(this.data.guild_id!)!.channels.filter((c: TextableChannel | VoiceChannel | ThreadChannel | NewsChannel) => 'parentId' in c && c.parentId === this.id);
   }
 
   moveChannel(id: string) {

@@ -105,7 +105,7 @@ class Guild {
     return !!this.data.owner;
   }
 
-  get ownerID() {
+  get ownerId() {
     return this.data.owner_id;
   }
 
@@ -113,11 +113,7 @@ class Guild {
     return this.data.permissions;
   }
 
-  get region() {
-    return this.data.region;
-  }
-
-  get afkChannelID() {
+  get afkChannelId() {
     return this.data.afk_channel_id;
   }
 
@@ -145,7 +141,7 @@ class Guild {
     return this.data.mfa_level;
   }
 
-  get applicationID() {
+  get applicationId() {
     return this.data.application_id;
   }
 
@@ -153,11 +149,11 @@ class Guild {
     return this.data.widget_enabled;
   }
 
-  get widgetChannelID() {
+  get widgetChannelId() {
     return this.data.widget_channel_id;
   }
 
-  get systemChannelID() {
+  get systemChannelId() {
     return this.data.system_channel_id;
   }
 }

@@ -1,5 +1,6 @@
-import type { APIGroupDMChannel } from 'discord-api-types/v10';
 import BaseChannel from '../BaseChannel';
+
+import type { APIGroupDMChannel } from 'discord-api-types/v10';
 
 class GroupDMChannel extends BaseChannel<APIGroupDMChannel> {
 
@@ -11,7 +12,7 @@ class GroupDMChannel extends BaseChannel<APIGroupDMChannel> {
     return this.data.recipients;
   }
 
-  get ownerID() {
+  get ownerId() {
     return this.data.owner_id;
   }
 

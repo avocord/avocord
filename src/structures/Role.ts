@@ -1,8 +1,7 @@
-import Guild from './Guild';
-
-import type { editRolePosition, RoleOptions } from './Constants';
+import type { EditRolePosition, RoleOptions } from './Constants';
 import type { APIRole } from 'discord-api-types/v10';
 import type Client from '../gateway/Client';
+import type Guild from './Guild';
 
 class Role {
   data: APIRole;
@@ -59,7 +58,7 @@ class Role {
     return this.client.rest.guild.updateGuildRole(this.guild.id, this.id, data);
   }
 
-  editPosition(positions: editRolePosition) {
+  editPosition(positions: EditRolePosition) {
     return this.client.rest.guild.updateGuildRolePositions(this.guild.id, positions);
   }
 

@@ -1,12 +1,11 @@
-import TextableChannel from './channel/TextableChannel';
-import { APIMessage } from 'discord-api-types/v10';
-import VoiceChannel from './channel/VoiceChannel';
-import NewsChannel from './channel/NewsChannel';
-import Thread from './channel/ThreadChannel';
-import DMChannel from './channel/DMChannel';
-import Client from '../gateway/Client';
-
 import type { CreateMessageData } from './channel/Constants';
+import type TextableChannel from './channel/TextableChannel';
+import type { APIMessage } from 'discord-api-types/v10';
+import type VoiceChannel from './channel/VoiceChannel';
+import type NewsChannel from './channel/NewsChannel';
+import type Thread from './channel/ThreadChannel';
+import type DMChannel from './channel/DMChannel';
+import type Client from '../gateway/Client';
 
 class Message {
   client: Client;

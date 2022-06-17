@@ -25,7 +25,7 @@
 		"node_modules"
 	],
 	"typedocOptions": {
-		"name": "DisoneJS",
+		"name": "Avocord",
 		"out": "./docs",
 		"entryPoints": [
 			"./src"

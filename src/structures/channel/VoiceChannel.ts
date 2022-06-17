@@ -14,7 +14,7 @@ class VoiceChannel extends BaseGuildChannel<APIVoiceChannel> {
     return this.data.user_limit;
   }
 
-  get parentID() {
+  get parentId() {
     return this.data.parent_id;
   }
 

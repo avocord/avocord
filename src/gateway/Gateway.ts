@@ -3,10 +3,11 @@ import { Client as CloudstormClient, IWSMessage } from 'cloudstorm';
 import ApplicationCommandInteraction from '../structures/interactions/ApplicationCommandInteraction';
 import AutocompleteInteraction from '../structures/interactions/AutocompleteInteraction';
 import ComponentInteraction from '../structures/interactions/ComponentInteraction';
+import ModalInteraction from '../structures/interactions/ModalInteraction';
+import PingInteraction from '../structures/interactions/PingInteraction';
 import CategoryChannel from '../structures/channel/CategoryChannel';
 import TextChannel from '../structures/channel/TextableChannel';
 import ThreadChannel from '../structures/channel/ThreadChannel';
-import ModalInteraction from '../structures/interactions/ModalInteraction';
 import VoiceChannel from '../structures/channel/VoiceChannel';
 import NewsChannel from '../structures/channel/NewsChannel';
 import DMChannel from '../structures/channel/DMChannel';
@@ -54,7 +55,6 @@ import {
   APIGuildMember,
   ChannelType
 } from 'discord-api-types/v10';
-import PingInteraction from '../structures/interactions/PingInteraction';
 
 class Gateway extends CloudstormClient {
   client: Client;
@@ -70,11 +70,26 @@ class Gateway extends CloudstormClient {
 
   processEvent(payload: IWSMessage) {
     let { t: eventType, d: dataEvent } = payload;
-    console.log(eventType);
-    switch (eventType) {
+    switch (eventType as IWSMessage['t'] | string) {
     case 'READY': {
       this.client.user = new User(this.client, dataEvent.user);
       this.client.emit('ready', dataEvent as GatewayReadyDispatchData);
+      break;
+    }
+    case 'AUTO_MODERATION_RULE_CREATE': {
+      this.client.emit('autoModerationRuleCreate', dataEvent);
+      break;
+    }
+    case 'AUTO_MODERATION_RULE_UPDATE': {
+      this.client.emit('autoModerationRuleUpdate', dataEvent);
+      break;
+    }
+    case 'AUTO_MODERATION_RULE_DELETE': {
+      this.client.emit('autoModerationRuleDelete', dataEvent);
+      break;
+    }
+    case 'AUTO_MODERATION_ACTION_EXECUTION': {
+      this.client.emit('autoModerationActionExecution', dataEvent);
       break;
     }
     case 'CHANNEL_CREATE':
@@ -346,7 +361,7 @@ class Gateway extends CloudstormClient {
       break;
     }
     case 'MESSAGE_CREATE': {
-      let channel: DMChannel | TextChannel | ThreadChannel | VoiceChannel | NewsChannel /*poto*/ | undefined = undefined;
+      let channel: DMChannel | TextChannel | ThreadChannel | VoiceChannel | NewsChannel | undefined = undefined;
       if (!dataEvent.guild_id) {
         this.client.dmChannels.set(dataEvent.channel_id, new DMChannel(this.client, { id: dataEvent.channel_id, type: ChannelType.DM }));
       } else {

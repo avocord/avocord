@@ -1,11 +1,11 @@
 import { Collection } from '@discordoo/collection';
 import { SnowTransfer } from 'snowtransfer';
 import { EventEmitter } from 'events';
-
-import DMChannel from '../structures/channel/DMChannel';
-import Guild from '../structures/Guild';
-import User from '../structures/User';
 import Gateway from './Gateway';
+
+import type DMChannel from '../structures/channel/DMChannel';
+import type Guild from '../structures/Guild';
+import type User from '../structures/User';
  
 class Client extends EventEmitter {
   guilds: Collection<string, Guild>;
