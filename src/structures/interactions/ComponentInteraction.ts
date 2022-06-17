@@ -1,10 +1,11 @@
-import BaseInteraction from "../BaseInteraction";
+import { APIMessageComponentInteraction, InteractionResponseType } from 'discord-api-types/v10';
+import BaseInteraction from '../BaseInteraction';
+
 import type { InteractionResponse } from 'discord-typings';
-import { APIMessageComponentInteraction, InteractionResponseType } from "discord-api-types/v10";
 
 class ComponentInteraction extends BaseInteraction {
   data: APIMessageComponentInteraction;
-  get locale () {
+  get locale() {
     return this.data.locale;
   }
 
@@ -15,13 +16,13 @@ class ComponentInteraction extends BaseInteraction {
     });
   }
 
-  replywithmodal(data: InteractionResponse['data']) {
+  replyWithModal(data: InteractionResponse['data']) {
     return this.client.rest.interaction.createInteractionResponse(this.id, this.token, {
       type: InteractionResponseType.Modal,
       data
     });
   }
-  
+
   updateMessage(data: InteractionResponse['data']) {
     return this.client.rest.interaction.createInteractionResponse(this.id, this.token, {
       type: InteractionResponseType.UpdateMessage,
@@ -30,7 +31,7 @@ class ComponentInteraction extends BaseInteraction {
   }
 
   deleteOriginal() {
-    return this.client.rest.interaction.deleteOriginalInteractionResponse(this.appID, this.token);
+    return this.client.rest.interaction.deleteOriginalInteractionResponse(this.appId, this.token);
   }
 
   defer(data: InteractionResponse['data']) {
@@ -40,7 +41,7 @@ class ComponentInteraction extends BaseInteraction {
     });
   }
 
-  get appID () {
+  get appId() {
     return this.data.application_id;
   }
 

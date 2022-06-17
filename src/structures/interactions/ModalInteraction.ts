@@ -1,20 +1,21 @@
-import BaseInteraction from "../BaseInteraction";
-import { APIModalSubmitInteraction, APIModalSubmitDMInteraction, InteractionResponseType } from 'discord-api-types/v10'
-import { InteractionResponse } from "discord-typings";
+import { APIModalSubmitInteraction, APIModalSubmitDMInteraction, InteractionResponseType } from 'discord-api-types/v10';
+import BaseInteraction from '../BaseInteraction';
+
+import type { InteractionResponse } from 'discord-typings';
 
 class ModalInteraction extends BaseInteraction {
   data: APIModalSubmitInteraction | APIModalSubmitDMInteraction;
-  get locale () {
+  get locale() {
     return this.data.locale;
   }
-  
+
   reply(data: InteractionResponse['data']) {
     return this.client.rest.interaction.createInteractionResponse(this.id, this.token, {
       type: InteractionResponseType.ChannelMessageWithSource,
       data
     });
   }
-  
+
   updateMessage(data: InteractionResponse['data']) {
     return this.client.rest.interaction.createInteractionResponse(this.id, this.token, {
       type: InteractionResponseType.UpdateMessage,
