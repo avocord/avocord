@@ -26,7 +26,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.28.0",
 		"@typescript-eslint/parser": "^5.28.0",
 		"eslint": "^8.17.0",
-		"ts-node-dev": "^1.1.8",
+		"ts-node-dev": "^2.0.0",
 		"typedoc": "^0.22.17",
 		"typedoc-plugin-discord-types": "^1.0.2",
 		"typedoc-plugin-mdn-links": "^1.0.6",

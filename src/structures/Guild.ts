@@ -29,6 +29,7 @@ class Guild {
     this.members = new Collection();
     this.emojis = new Collection();
     this.presences = new Collection();
+    this.stickers = new Collection();
     this.client = client;
 
     for (let i of data.channels || []) {
